@@ -5,18 +5,28 @@
   <img src="examples/graphics/robot_arm_simulated.gif" alt="Robot arm simulated trajectory" width="57%" />
 </p>
 
-Paper-focused repository for:
-- diffusion score-model training,
-- DRGD optimization,
-- DRGD reference-tracking control.
+Repository for the paper
 
-This repository contains the paper-facing training, optimization, and control examples.
+<div align="center">
+
+[**Landing with the Score: Riemannian Optimization through Denoising**](https://openreview.net/forum?id=xZNoeX0z9f),
+
+A. Kharitenko, Z. Shen, R. de Santi, N. He, and F. Dörfler  
+*Fourteenth International Conference on Learning Representations (ICLR 2026), 2026.*
+
+</div>
+
+This repository contains methods for
+
+- score-based diffusion model training,
+- Optimization using denoising Riemannian gradient descent (DRGD) and denoising landing flow (DLF),
+- Tools for reference-tracking control using DRGD
 
 ## Links
 
-- Paper: [`Arxiv`](https://arxiv.org/abs/2509.23357)
+- Paper: [`Arxiv`](https://arxiv.org/abs/2509.23357), [`OpenReview`](https://openreview.net/forum?id=xZNoeX0z9f), [`ICLR 2026`](https://iclr.cc/virtual/2026/poster/10006634)
 - Project website: `TBD (GitHub Pages link)`
-- Release assets (checkpoints + datasets): `TBD (GitHub Releases link)`
+- Release assets (checkpoints + datasets): [`https://github.com/CompleteMetricSpace/score-manifold-optimization/releases`](https://github.com/CompleteMetricSpace/score-manifold-optimization/releases)
 
 ## Install
 
@@ -34,9 +44,9 @@ Optional MuJoCo support:
 pip install -e .[mujoco]
 ```
 
-## Quickstart (Python API: Train + Optimize + Control)
+## Examples
 
-### 1. Create a tiny Stiefel dataset
+### 1. Create a tiny dataset from the Stiefel manifold St(3,3)
 
 ```python
 from pathlib import Path
@@ -160,7 +170,9 @@ result = run_riemannian_optimization(
 )
 ```
 
-### 4. Run DRGD reference-tracking control (trajectory model)
+### 4. Run reference-tracking control using DRGD (trajectory model)
+
+Note that trajectories are represented by tensors of shape ```(B, T, D)```, where ```B``` is the batch dimension, ```T``` is the trajectory time horizon and ```D = U + Y``` is the dimesion (input-dimension + output dimension).
 
 ```python
 import torch
@@ -216,6 +228,8 @@ tracking = run_reference_tracking(
 
 ## Colab Notebooks
 
+This repo contains more examples in notebook form:
+
 - [examples/colab/01_stiefel_train.ipynb](examples/colab/01_stiefel_train.ipynb)
 - [examples/colab/02_stiefel_optimize.ipynb](examples/colab/02_stiefel_optimize.ipynb)
 - [examples/colab/03_unicycle_train.ipynb](examples/colab/03_unicycle_train.ipynb)
@@ -223,14 +237,6 @@ tracking = run_reference_tracking(
 - [examples/colab/05_robot_arm_train.ipynb](examples/colab/05_robot_arm_train.ipynb)
 - [examples/colab/06_robot_arm_control.ipynb](examples/colab/06_robot_arm_control.ipynb)
 
-## Release Artifacts
-
-Large datasets, checkpoints, and generated videos are distributed via GitHub Releases, not git history.
-
-Planned first public assets:
-- Stiefel
-- Unicycle
-- Robot Arm
 
 ## Optional MuJoCo Adapter
 
@@ -323,7 +329,7 @@ Datasets are `.pt` files created with `torch.save` and should contain:
 Notes:
 - `train_data` is required.
 - `metadata.space` must match the tensor shape.
-- `constraint` is optional for training, but useful for constrained workflows and control.
+- `constraint` is optional for training, but useful for logging and verifying constraint violations when a model is available.
 
 ## Canonical Checkpoint Files
 
