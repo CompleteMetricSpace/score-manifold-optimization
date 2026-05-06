@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "Score Manifold Optimization"
+type: software
+version: "0.1.0"
+date-released: 2026-05-06
+authors:
+  - family-names: "Kharitenko"
+    given-names: "Andrei"
+repository-code: "https://github.com/CompleteMetricSpace/score-manifold-optimization"
+license: "MIT"

@@ -1,0 +1,37 @@
+<mujoco model="robot_arm_2dof">
+  <compiler angle="radian"/>
+  <option gravity="0 0 0" timestep="0.002"/>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1="0.92 0.92 0.92" rgb2="0.82 0.82 0.82" width="256" height="256"/>
+    <material name="floor_mat" texture="grid" texrepeat="4 4" reflectance="0.05"/>
+    <material name="link1_mat" rgba="0.20 0.45 0.85 1"/>
+    <material name="link2_mat" rgba="0.95 0.55 0.15 1"/>
+    <material name="joint_mat" rgba="0.20 0.20 0.20 1"/>
+  </asset>
+
+  <worldbody>
+    <light name="key_light" pos="1.2 -1.2 1.6" dir="-1 1 -1" diffuse="1 1 1" specular="0.3 0.3 0.3"/>
+    <light name="fill_light" pos="-1.0 1.0 1.2" dir="1 -1 -0.7" diffuse="0.6 0.6 0.6" specular="0.1 0.1 0.1"/>
+    <camera name="cam_overview" pos="1.1 -1.6 0.9" xyaxes="0.82 0.57 0  -0.28 0.40 0.87"/>
+
+    <geom name="floor" type="plane" size="2 2 0.05" pos="0 0 -0.08" material="floor_mat"/>
+
+    <body name="link1_body" pos="0 0 0">
+      <joint name="joint1" type="hinge" axis="0 0 1" pos="0 0 0" damping="0.1"/>
+      <geom name="joint1_vis" type="sphere" size="0.04" pos="0 0 0" material="joint_mat"/>
+      <geom name="link1_geom" type="capsule" fromto="0 0 0 0.5 0 0" size="0.03" mass="1.0" material="link1_mat"/>
+
+      <body name="link2_body" pos="0.5 0 0">
+        <joint name="joint2" type="hinge" axis="0 0 1" pos="0 0 0" damping="0.1"/>
+        <geom name="joint2_vis" type="sphere" size="0.032" pos="0 0 0" material="joint_mat"/>
+        <geom name="link2_geom" type="capsule" fromto="0 0 0 0.5 0 0" size="0.025" mass="0.7" material="link2_mat"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="torque1" joint="joint1" gear="1"/>
+    <motor name="torque2" joint="joint2" gear="1"/>
+  </actuator>
+</mujoco>

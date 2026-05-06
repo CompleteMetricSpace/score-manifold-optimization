@@ -1,0 +1,37 @@
+dataset:
+  path: data/robot_arm_T100_n20000.pt
+model:
+  type: UNet1DTimeSmall
+  params:
+    model_channels: 64
+    num_res_blocks: 1
+    dropout: 0.0
+    time_embedder: SinCosEmbedder
+    time_emb_dim: 128
+diffusion:
+  type: ve
+  T: 1.0
+  sigma_min: 0.005
+  sigma_max: 5.0
+training:
+  num_epochs: 50000
+  batch_size: 2048
+optimizer:
+  type: adam
+  lr: 0.001
+  betas:
+  - 0.9
+  - 0.999
+  weight_decay: 0.0
+training_options:
+  t_start: 1.0e-05
+  t_stop: 1.0
+  stratified: true
+  weight_by_var: true
+  clip_grad: true
+  clip_value: 1.0
+  save_interval: 250
+  eval_interval: 500
+  log_sample_metrics: true
+  eval_log_fn_samples: 32
+  eval_log_fn_steps: 500

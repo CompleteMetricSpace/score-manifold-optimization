@@ -1,0 +1,32 @@
+dataset:
+  path: data/stiefel_n3_p3.pt
+model:
+  type: mlp_diff_scale
+  params:
+    hidden_dim: 256
+    num_layers: 4
+    activation: gelu
+    time_embedder: SinCosEmbedder
+    time_emb_dim: 16
+diffusion:
+  type: ve
+  T: 1.0
+  sigma_min: 0.005
+  sigma_max: 3.0
+training:
+  num_epochs: 20000
+  batch_size: 128
+optimizer:
+  type: adam
+  lr: 0.003
+  betas:
+  - 0.9
+  - 0.999
+  weight_decay: 0.0
+training_options:
+  t_start: 1.0e-05
+  t_stop: 1.0
+  stratified: true
+  weight_by_var: true
+  clip_grad: true
+  clip_value: 1.0
