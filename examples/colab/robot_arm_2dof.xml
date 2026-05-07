@@ -1,6 +1,9 @@
 <mujoco model="robot_arm_2dof">
   <compiler angle="radian"/>
   <option gravity="0 0 0" timestep="0.002"/>
+  <visual>
+  <global offwidth="1920" offheight="1080"/>
+  </visual>
 
   <asset>
     <texture name="grid" type="2d" builtin="checker" rgb1="0.92 0.92 0.92" rgb2="0.82 0.82 0.82" width="256" height="256"/>
@@ -11,9 +14,10 @@
   </asset>
 
   <worldbody>
-    <light name="key_light" pos="1.2 -1.2 1.6" dir="-1 1 -1" diffuse="1 1 1" specular="0.3 0.3 0.3"/>
+    <light name="key_light" pos="1.2 -1.2 1.6" dir="-1 1 -1" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3"/>
     <light name="fill_light" pos="-1.0 1.0 1.2" dir="1 -1 -0.7" diffuse="0.6 0.6 0.6" specular="0.1 0.1 0.1"/>
     <camera name="cam_overview" pos="1.1 -1.6 0.9" xyaxes="0.82 0.57 0  -0.28 0.40 0.87"/>
+    <camera name="cam_top" pos="0 -1.2 1.8" xyaxes="1 0 0 0 0.832 0.555"/>
 
     <geom name="floor" type="plane" size="2 2 0.05" pos="0 0 -0.08" material="floor_mat"/>
 

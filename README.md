@@ -25,7 +25,7 @@ This repository contains methods for
 ## Links
 
 - Paper: [`Arxiv`](https://arxiv.org/abs/2509.23357), [`OpenReview`](https://openreview.net/forum?id=xZNoeX0z9f), [`ICLR 2026`](https://iclr.cc/virtual/2026/poster/10006634)
-- Project website: `TBD (GitHub Pages link)`
+- Project website: [`https://completemetricspace.github.io/score-manifold-optimization-webpage/`](https://completemetricspace.github.io/score-manifold-optimization-webpage/)
 - Release assets (checkpoints + datasets): [`https://github.com/CompleteMetricSpace/score-manifold-optimization/releases`](https://github.com/CompleteMetricSpace/score-manifold-optimization/releases)
 
 ## Install
