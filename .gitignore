@@ -19,3 +19,4 @@ data/*.backup.pt
 *.gif
 !examples/graphics/*.mp4
 !examples/graphics/*.gif
+examples/assets/flexiv_rizon4/
